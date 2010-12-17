@@ -7,6 +7,7 @@ require 'src/lib/event'
 require 'src/controllers/render_controller'
 require 'src/controllers/keyboard_controller'
 require 'src/controllers/action_controller'
+require 'src/controllers/scene_controller'
 require 'src/models/player'
 require 'src/models/zombie'
 require 'src/models/bullet'
@@ -29,6 +30,7 @@ class GameWindow < Gosu::Window
     @player.warp(200, 200)
 
     @zombie = Zombie.new(100, 100, 0)
+    @zombie = Zombie.new(550, 300, 0)
 
     @current_time = Gosu::milliseconds
   end

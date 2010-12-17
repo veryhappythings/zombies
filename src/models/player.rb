@@ -1,5 +1,7 @@
 
 class Player
+  attr_reader :x, :y
+
   def initialize
     @window = RenderController.instance.window
     @image = Gosu::Image.new(@window, 'media/player.png', false)
@@ -7,6 +9,7 @@ class Player
 
     RenderController.instance.register(self)
     KeyboardController.instance.register(self)
+    SceneController.instance.register(self)
   end
 
   def warp(x, y)

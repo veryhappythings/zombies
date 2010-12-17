@@ -6,6 +6,7 @@ class Bullet
     @y = y
 
     RenderController.instance.register(self)
+    SceneController.instance.register(self)
     ActionController.instance.register(self)
   end
 
@@ -25,5 +26,6 @@ class Bullet
   def destroy!
     RenderController.instance.deregister(self)
     ActionController.instance.deregister(self)
+    SceneController.instance.deregister(self)
   end
 end
