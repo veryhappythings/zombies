@@ -38,7 +38,7 @@ class GameWindow < Gosu::Window
   end
 
   def pop_state
-    @state_stack.delete @state_stack.last
+    @state_stack.delete current_game_state
   end
 
   # Game loop
