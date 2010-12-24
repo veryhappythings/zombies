@@ -1,19 +1,3 @@
-module KeyboardActions
-  def button_down(id)
-    case id
-      when Gosu::Button::KbEscape then
-        close
-      when Gosu::Button::KbSpace then
-        KeyboardController.instance.send_event(:kb_space_down)
-
-      when Gosu::Button::KbM then
-        if @state_stack.last != MenuState.instance
-          @state_stack << MenuState.instance
-        end
-    end
-  end
-end
-
 class KeyboardController
   include Singleton
 

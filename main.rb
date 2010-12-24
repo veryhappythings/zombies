@@ -15,7 +15,6 @@ require 'src/models/zombie'
 require 'src/models/bullet'
 
 class GameWindow < Gosu::Window
-  include KeyboardActions
   include Singleton
 
   def initialize
@@ -32,22 +31,37 @@ class GameWindow < Gosu::Window
 
     # State setup
     MenuState.instance.setup(self)
-
     @state_stack = []
     @state_stack << PlayingState.instance
 
     @current_time = Gosu::milliseconds
   end
 
+  def current_game_state
+    @state_stack.last
+  end
+
+  def enter_state(state)
+    @state_stack << state
+  end
+
+  def pop_state
+    @state_stack.delete @state_stack.last
+  end
+
+  def button_down(id)
+    current_game_state.button_down(id)
+  end
+
   def update
     dt = (Gosu::milliseconds - @current_time) / 1000.0
     @current_time = Gosu::milliseconds
 
-    @state_stack.last.update(dt)
+    current_game_state.update(dt)
   end
 
   def draw
-    @state_stack.last.draw
+    current_game_state.draw
   end
 end
 

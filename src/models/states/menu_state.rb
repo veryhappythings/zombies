@@ -1,6 +1,5 @@
 class MenuState
   include Singleton
-  include KeyboardActions
 
   attr_accessor :window
 
@@ -17,6 +16,13 @@ class MenuState
   def setup(window)
     @window = window
     @font = Gosu::Font.new(@window, Gosu::default_font_name, 20)
+  end
+
+  def button_down(id)
+    case id
+    when Gosu::Button::KbM then
+      GameWindow.instance.pop_state
+    end
   end
 
   def draw

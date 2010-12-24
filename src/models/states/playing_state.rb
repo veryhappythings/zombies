@@ -24,4 +24,15 @@ class PlayingState
     # Actions
     @action_controller.update(dt)
   end
+
+  def button_down(id)
+    case id
+      when Gosu::Button::KbEscape then
+        close
+      when Gosu::Button::KbSpace then
+        KeyboardController.instance.send_event(:kb_space_down)
+      when Gosu::Button::KbM then
+        GameWindow.instance.enter_state MenuState.instance
+    end
+  end
 end
