@@ -10,6 +10,10 @@ class MenuState
       'new game',
       'quit'
     ]
+
+    if window.current_game_state.class.to_s == 'PlayingState'
+      @menu_items.insert(0, 'resume')
+    end
   end
 
   def button_down(id)
