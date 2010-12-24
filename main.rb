@@ -8,17 +8,21 @@ require 'src/controllers/render_controller'
 require 'src/controllers/keyboard_controller'
 require 'src/controllers/action_controller'
 require 'src/controllers/scene_controller'
+require 'src/models/states/menu_state'
+require 'src/models/states/playing_state'
 require 'src/models/player'
 require 'src/models/zombie'
 require 'src/models/bullet'
 
 class GameWindow < Gosu::Window
   include KeyboardActions
+  include Singleton
 
   def initialize
     super(640, 480, false)
     self.caption = "Zombies etc"
 
+    # Controller setup
     @render_controller = RenderController.instance
     @render_controller.window = self
     @keyboard_controller = KeyboardController.instance
@@ -26,32 +30,27 @@ class GameWindow < Gosu::Window
     @action_controller = ActionController.instance
     @action_controller.window = self
 
-    @player = Player.new
-    @player.warp(200, 200)
+    # State setup
+    MenuState.instance.setup(self)
 
-    @zombie = Zombie.new(100, 100, 0)
-    @zombie = Zombie.new(550, 300, 0)
+    @state_stack = []
+    @state_stack << PlayingState.instance
 
     @current_time = Gosu::milliseconds
   end
 
   def update
-    # I'm gonna use delta time physics. Bitches love delta time physics.
     dt = (Gosu::milliseconds - @current_time) / 1000.0
     @current_time = Gosu::milliseconds
 
-    # Controls
-    @keyboard_controller.update(dt)
-
-    # Actions
-    @action_controller.update(dt)
+    @state_stack.last.update(dt)
   end
 
   def draw
-    @render_controller.draw
+    @state_stack.last.draw
   end
 end
 
-window = GameWindow.new
+window = GameWindow.instance
 window.show
 
