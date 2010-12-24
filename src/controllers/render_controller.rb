@@ -1,11 +1,9 @@
 class RenderController
-  include Singleton
+  attr_reader :window
 
-  attr_accessor :window
-
-  def initialize
+  def initialize(window)
     @objects = []
-    @window = nil
+    @window = window
   end
 
   def register(object)

@@ -22,15 +22,12 @@ class GameWindow < Gosu::Window
     self.caption = "Zombies etc"
 
     # Controller setup
-    @render_controller = RenderController.instance
-    @render_controller.window = self
     @keyboard_controller = KeyboardController.instance
     @keyboard_controller.window = self
     @action_controller = ActionController.instance
     @action_controller.window = self
 
     # State setup
-    MenuState.instance.setup(self)
     @state_stack = []
     @state_stack << PlayingState.new(self)
 

@@ -4,7 +4,8 @@ class PlayingState
 
   def initialize(window)
     @window = window
-    @render_controller = RenderController.instance
+    #@render_controller = RenderController.instance
+    @render_controller = RenderController.new(@window)
     @keyboard_controller = KeyboardController.instance
     @action_controller = ActionController.instance
     @scene_controller = SceneController.instance
@@ -35,7 +36,7 @@ class PlayingState
       when Gosu::Button::KbSpace then
         KeyboardController.instance.send_event(:kb_space_down)
       when Gosu::Button::KbM then
-        GameWindow.instance.enter_state MenuState.instance
+        GameWindow.instance.enter_state MenuState.new(@window)
     end
   end
 end

@@ -1,21 +1,15 @@
 class MenuState
-  include Singleton
-
   attr_accessor :window
 
-  def initialize
-    @font = nil
-    @window = nil
+  def initialize(window)
+    @window = window
+
+    @font = Gosu::Font.new(@window, Gosu::default_font_name, 20)
 
     @menu_items = [
       'new game',
       'quit'
     ]
-  end
-
-  def setup(window)
-    @window = window
-    @font = Gosu::Font.new(@window, Gosu::default_font_name, 20)
   end
 
   def button_down(id)
