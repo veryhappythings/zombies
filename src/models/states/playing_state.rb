@@ -4,11 +4,11 @@ class PlayingState
 
   def initialize(window)
     @window = window
-    #@render_controller = RenderController.instance
+
     @render_controller = RenderController.new(@window)
-    @keyboard_controller = KeyboardController.instance
-    @action_controller = ActionController.instance
-    @scene_controller = SceneController.instance
+    @keyboard_controller = KeyboardController.new(@window)
+    @action_controller = ActionController.new(@window)
+    @scene_controller = SceneController.new(@window)
 
     @player = Player.new(self)
     @player.warp(200, 200)
@@ -34,7 +34,7 @@ class PlayingState
       when Gosu::Button::KbEscape then
         @window.close
       when Gosu::Button::KbSpace then
-        KeyboardController.instance.send_event(:kb_space_down)
+        @keyboard_controller.send_event(:kb_space_down)
       when Gosu::Button::KbM then
         GameWindow.instance.enter_state MenuState.new(@window)
     end

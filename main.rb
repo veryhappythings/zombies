@@ -21,12 +21,6 @@ class GameWindow < Gosu::Window
     super(640, 480, false)
     self.caption = "Zombies etc"
 
-    # Controller setup
-    @keyboard_controller = KeyboardController.instance
-    @keyboard_controller.window = self
-    @action_controller = ActionController.instance
-    @action_controller.window = self
-
     # State setup
     @state_stack = []
     @state_stack << PlayingState.new(self)

@@ -1,11 +1,9 @@
 class SceneController
-  include Singleton
-
   attr_accessor :window, :objects
 
-  def initialize
+  def initialize(window)
     @objects = []
-    @window = nil
+    @window = window
   end
 
   def register(object)

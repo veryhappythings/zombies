@@ -1,10 +1,9 @@
 class KeyboardController
-  include Singleton
-
   attr_accessor :window
-  def initialize
+
+  def initialize(window)
     @listeners = []
-    @window = nil
+    @window = window
   end
 
   def register(object)

@@ -25,8 +25,8 @@ class Bullet
   end
 
   def destroy!
-    RenderController.instance.deregister(self)
-    ActionController.instance.deregister(self)
-    SceneController.instance.deregister(self)
+    @state.render_controller.deregister(self)
+    @state.action_controller.deregister(self)
+    @state.scene_controller.deregister(self)
   end
 end

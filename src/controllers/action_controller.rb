@@ -1,11 +1,9 @@
 class ActionController
-  include Singleton
-
   attr_accessor :window
 
-  def initialize
+  def initialize(window)
     @objects = []
-    @window = nil
+    @window = window
   end
 
   def register(object)
