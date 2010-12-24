@@ -1,16 +1,19 @@
 class PlayingState
-  include Singleton
+  attr_reader :window, :render_controller, :keyboard_controller
+  attr_reader :action_controller, :scene_controller
 
-  def initialize
+  def initialize(window)
+    @window = window
     @render_controller = RenderController.instance
     @keyboard_controller = KeyboardController.instance
     @action_controller = ActionController.instance
+    @scene_controller = SceneController.instance
 
-    @player = Player.new
+    @player = Player.new(self)
     @player.warp(200, 200)
 
-    @zombie = Zombie.new(100, 100, 0)
-    @zombie = Zombie.new(550, 300, 0)
+    @zombie = Zombie.new(self, 100, 100, 0)
+    @zombie = Zombie.new(self, 550, 300, 0)
   end
 
   def draw
@@ -28,7 +31,7 @@ class PlayingState
   def button_down(id)
     case id
       when Gosu::Button::KbEscape then
-        close
+        @window.close
       when Gosu::Button::KbSpace then
         KeyboardController.instance.send_event(:kb_space_down)
       when Gosu::Button::KbM then

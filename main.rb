@@ -32,11 +32,12 @@ class GameWindow < Gosu::Window
     # State setup
     MenuState.instance.setup(self)
     @state_stack = []
-    @state_stack << PlayingState.instance
+    @state_stack << PlayingState.new(self)
 
     @current_time = Gosu::milliseconds
   end
 
+  # State handling
   def current_game_state
     @state_stack.last
   end
@@ -49,6 +50,7 @@ class GameWindow < Gosu::Window
     @state_stack.delete @state_stack.last
   end
 
+  # Game loop
   def button_down(id)
     current_game_state.button_down(id)
   end

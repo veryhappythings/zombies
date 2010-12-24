@@ -1,13 +1,14 @@
 class Zombie
-  def initialize(x, y, angle)
-    @window = RenderController.instance.window
+  def initialize(state, x, y, angle)
+    @state = state
+    @window = @state.window
     @image = Gosu::Image.new(@window, 'media/zombie.png', false)
     @x = x
     @y = y
     @angle = angle
-    RenderController.instance.register(self)
-    ActionController.instance.register(self)
-    SceneController.instance.register(self)
+    @state.render_controller.register(self)
+    @state.action_controller.register(self)
+    @state.scene_controller.register(self)
   end
   def warp(x, y)
     @x, @y = x, y
@@ -23,7 +24,7 @@ class Zombie
   end
 
   def update(dt)
-    player = SceneController.instance.objects.find {|o| o.class == Player}
+    player = @state.scene_controller.objects.find {|o| o.class == Player}
     if player
       target_x, target_y = player.x, player.y
       @angle = Gosu::angle(@x, @y, target_x, target_y)

@@ -2,14 +2,15 @@
 class Player
   attr_reader :x, :y
 
-  def initialize
-    @window = RenderController.instance.window
+  def initialize(state)
+    @state = state
+    @window = state.window
     @image = Gosu::Image.new(@window, 'media/player.png', false)
     @x = @y = @angle = 0.0
 
-    RenderController.instance.register(self)
-    KeyboardController.instance.register(self)
-    SceneController.instance.register(self)
+    @state.render_controller.register(self)
+    @state.keyboard_controller.register(self)
+    @state.scene_controller.register(self)
   end
 
   def warp(x, y)
@@ -57,6 +58,6 @@ class Player
   end
 
   def shoot
-    bullet = Bullet.new(@x, @y, @angle)
+    bullet = Bullet.new(@state, @x, @y, @angle)
   end
 end
