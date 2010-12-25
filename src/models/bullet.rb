@@ -1,4 +1,4 @@
-class Bullet
+class Bullet < Renderable
   SPEED = 100
 
   def initialize(state, x, y, angle)
@@ -9,6 +9,13 @@ class Bullet
     @y = y
 
     @state.scene_controller.register(self)
+  end
+
+  def collides_with?(object)
+    @x > object.x - object.width/2 &&
+      @x < object.x + object.width/2 &&
+      @y > object.y - object.height/2 &&
+      @y < object.y + object.height/2
   end
 
   def draw
@@ -22,6 +29,15 @@ class Bullet
     # TODO: Collision detection
     if @x > @state.window.width or @y > @state.window.height or @x < 0 or @y < 0
       destroy!
+    end
+
+    @state.scene_controller.objects.each do |object|
+      if collides_with? object
+        if object.class == Zombie
+          object.destroy!
+          destroy!
+        end
+      end
     end
   end
 

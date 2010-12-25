@@ -1,4 +1,4 @@
-class Zombie
+class Zombie < Renderable
   SPEED = 50
 
   def initialize(state, x, y, angle)
@@ -30,5 +30,9 @@ class Zombie
       @angle = Gosu::angle(@x, @y, target_x, target_y)
       move(dt)
     end
+  end
+
+  def destroy!
+    @state.scene_controller.deregister(self)
   end
 end

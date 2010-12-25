@@ -1,6 +1,7 @@
 class PlayingState
-  attr_reader :window, :render_controller, :keyboard_controller
-  attr_reader :action_controller, :scene_controller
+  attr_reader :window
+  attr_reader :keyboard_controller
+  attr_reader :scene_controller
 
   def initialize(window)
     @window = window

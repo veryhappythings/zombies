@@ -4,6 +4,7 @@ require 'rubygems'
 require 'gosu'
 
 require 'src/lib/event'
+require 'src/lib/renderable'
 require 'src/controllers/keyboard_controller'
 require 'src/controllers/scene_controller'
 require 'src/models/states/menu_state'
@@ -20,9 +21,8 @@ class GameWindow < Gosu::Window
     self.caption = "Zombies etc"
 
     # State setup
-    @state_stack = [
-      MenuState.new(self)
-    ]
+    @state_stack = []
+    @state_stack << MenuState.new(self)
 
     @current_time = Gosu::milliseconds
   end

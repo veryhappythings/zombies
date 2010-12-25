@@ -1,8 +1,5 @@
-
-class Player
+class Player < Renderable
   SPEED = 100
-
-  attr_reader :x, :y
 
   def initialize(state)
     @state = state
@@ -14,23 +11,12 @@ class Player
     @state.scene_controller.register(self)
   end
 
-  def width
-    @image.width
-  end
-
-  def height
-    @image.height
-  end
-
   def warp(x, y)
     @x, @y = x, y
   end
 
   def draw
     @image.draw_rot(@x, @y, 1, @angle)
-  end
-
-  def update(dt)
   end
 
   def handle_event(event)
