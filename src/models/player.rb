@@ -13,6 +13,14 @@ class Player
     @state.scene_controller.register(self)
   end
 
+  def width
+    @image.width
+  end
+
+  def height
+    @image.height
+  end
+
   def warp(x, y)
     @x, @y = x, y
   end
@@ -51,10 +59,21 @@ class Player
     move(dt, -1)
   end
   def move(dt, direction)
-    @x += Gosu::offset_x(@angle, 100*direction) * dt
-    @y += Gosu::offset_y(@angle, 100*direction) * dt
-    @x %= @state.window.width
-    @y %= @state.window.height
+    # TODO: Move wall collision calculations into physics model
+    x_movement = Gosu::offset_x(@angle, 100*direction) * dt
+    y_movement = Gosu::offset_y(@angle, 100*direction) * dt
+
+    if x_movement > 0 and @x < @state.window.width - width/2
+      @x += x_movement
+    elsif x_movement < 0 and @x > 0 + width/2
+      @x += x_movement
+    end
+
+    if y_movement > 0 and @y < @state.window.height - height/2
+      @y += y_movement
+    elsif y_movement < 0 and @y > 0 + height/2
+      @y += y_movement
+    end
   end
 
   def shoot
