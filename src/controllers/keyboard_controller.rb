@@ -1,9 +1,10 @@
 class KeyboardController
   attr_accessor :window
 
-  def initialize(window)
+  def initialize(state)
     @listeners = []
-    @window = window
+    @state = state
+    @window = @state.window
   end
 
   def register(object)

@@ -6,14 +6,11 @@ class PlayingState
   def initialize(window)
     @window = window
 
-    @keyboard_controller = KeyboardController.new(@window)
-    @scene_controller = SceneController.new(@window)
+    @keyboard_controller = KeyboardController.new(self)
+    @scene_controller = SceneController.new(self)
 
     @player = Player.new(self)
     @player.warp(200, 200)
-
-    @zombie = Zombie.new(self, 100, 100, 0)
-    @zombie = Zombie.new(self, 550, 300, 0)
   end
 
   def draw
