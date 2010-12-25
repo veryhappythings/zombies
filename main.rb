@@ -20,8 +20,9 @@ class GameWindow < Gosu::Window
     self.caption = "Zombies etc"
 
     # State setup
-    @state_stack = []
-    @state_stack << MenuState.new(self)
+    @state_stack = [
+      MenuState.new(self)
+    ]
 
     @current_time = Gosu::milliseconds
   end
