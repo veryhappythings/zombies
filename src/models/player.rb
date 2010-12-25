@@ -10,7 +10,6 @@ class Player
     @image = Gosu::Image.new(@window, 'media/player.png', false)
     @x = @y = @angle = 0.0
 
-    @state.render_controller.register(self)
     @state.keyboard_controller.register(self)
     @state.scene_controller.register(self)
   end
@@ -29,6 +28,9 @@ class Player
 
   def draw
     @image.draw_rot(@x, @y, 1, @angle)
+  end
+
+  def update(dt)
   end
 
   def handle_event(event)

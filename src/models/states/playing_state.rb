@@ -5,9 +5,7 @@ class PlayingState
   def initialize(window)
     @window = window
 
-    @render_controller = RenderController.new(@window)
     @keyboard_controller = KeyboardController.new(@window)
-    @action_controller = ActionController.new(@window)
     @scene_controller = SceneController.new(@window)
 
     @player = Player.new(self)
@@ -18,7 +16,7 @@ class PlayingState
   end
 
   def draw
-    @render_controller.draw
+    @scene_controller.draw
   end
 
   def update(dt)
@@ -26,7 +24,7 @@ class PlayingState
     @keyboard_controller.update(dt)
 
     # Actions
-    @action_controller.update(dt)
+    @scene_controller.update(dt)
   end
 
   def button_down(id)

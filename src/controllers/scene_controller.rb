@@ -1,6 +1,6 @@
 # The SceneController knows about everything that is going on
 # in the scene. If anything wants to know what's in the scene,
-# it should ask here
+# it should ask here. Also handles rendering and updating.
 class SceneController
   attr_accessor :window, :objects
 
@@ -15,5 +15,17 @@ class SceneController
 
   def deregister(object)
     @objects.delete object
+  end
+
+  def draw
+    @objects.each do |object|
+      object.draw
+    end
+  end
+
+  def update(dt)
+    @objects.each do |object|
+      object.update(dt)
+    end
   end
 end

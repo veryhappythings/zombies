@@ -8,8 +8,6 @@ class Zombie
     @x = x
     @y = y
     @angle = angle
-    @state.render_controller.register(self)
-    @state.action_controller.register(self)
     @state.scene_controller.register(self)
   end
   def warp(x, y)
