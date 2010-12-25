@@ -11,13 +11,6 @@ class Bullet < Renderable
     @state.scene_controller.register(self)
   end
 
-  def collides_with?(object)
-    @x > object.x - object.width/2 &&
-      @x < object.x + object.width/2 &&
-      @y > object.y - object.height/2 &&
-      @y < object.y + object.height/2
-  end
-
   def draw
     @image.draw_rot(@x, @y, 1, @angle)
   end

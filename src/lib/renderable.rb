@@ -14,4 +14,11 @@ class Renderable
 
   def update(dt)
   end
+
+  def collides_with?(renderable)
+    @x > renderable.x - renderable.width/2 &&
+      @x < renderable.x + renderable.width/2 &&
+      @y > renderable.y - renderable.height/2 &&
+      @y < renderable.y + renderable.height/2
+  end
 end
