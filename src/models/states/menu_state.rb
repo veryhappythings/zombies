@@ -4,7 +4,8 @@ class MenuState
   def initialize(window)
     @window = window
 
-    @font = Gosu::Font.new(@window, Gosu::default_font_name, 40)
+    @font_size = 40
+    @font = Gosu::Font.new(@window, Gosu::default_font_name, @font_size)
 
     @menu_items = [
       'new game',
@@ -44,11 +45,12 @@ class MenuState
   end
 
   def draw
+    y_offset = 50
     @menu_items.each_with_index do |item, i|
-      @font.draw(item, 20, i * 20, 0)
+      @font.draw(item, @font_size*3, (i * @font_size) + y_offset, 0)
     end
 
-    @font.draw('>', 5, @current_item * 20, 0)
+    @font.draw('>', @font_size*2, (@current_item * @font_size) + y_offset, 0)
   end
 
   def update(dt)
