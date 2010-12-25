@@ -20,9 +20,9 @@ class MenuState
   def execute_action(action)
     case action
     when 'resume'
-      GameWindow.instance.pop_state
+      GameWindow.instance.pop_state!
     when 'new game'
-      puts 'NOT YET!'
+      GameWindow.instance.new_game!
     when 'quit'
       GameWindow.instance.close
     end
@@ -30,8 +30,6 @@ class MenuState
 
   def button_down(id)
     case id
-    when Gosu::Button::KbM then
-      GameWindow.instance.pop_state
     when Gosu::Button::KbUp then
       if @current_item > 0
         @current_item -= 1
