@@ -1,4 +1,6 @@
 class Zombie
+  SPEED = 50
+
   def initialize(state, x, y, angle)
     @state = state
     @window = @state.window
@@ -19,8 +21,8 @@ class Zombie
   end
 
   def move(dt)
-    @x += Gosu::offset_x(@angle, 50) * dt
-    @y += Gosu::offset_y(@angle, 50) * dt
+    @x += Gosu::offset_x(@angle, SPEED) * dt
+    @y += Gosu::offset_y(@angle, SPEED) * dt
   end
 
   def update(dt)

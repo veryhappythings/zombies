@@ -1,5 +1,7 @@
 
 class Player
+  SPEED = 100
+
   attr_reader :x, :y
 
   def initialize(state)
@@ -60,8 +62,8 @@ class Player
   end
   def move(dt, direction)
     # TODO: Move wall collision calculations into physics model
-    x_movement = Gosu::offset_x(@angle, 100*direction) * dt
-    y_movement = Gosu::offset_y(@angle, 100*direction) * dt
+    x_movement = Gosu::offset_x(@angle, SPEED*direction) * dt
+    y_movement = Gosu::offset_y(@angle, SPEED*direction) * dt
 
     if x_movement > 0 and @x < @state.window.width - width/2
       @x += x_movement

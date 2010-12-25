@@ -1,4 +1,6 @@
 class Bullet
+  SPEED = 100
+
   def initialize(state, x, y, angle)
     @state = state
     @image = Gosu::Image.new(@state.render_controller.window, 'media/bullet.png', false)
@@ -16,9 +18,10 @@ class Bullet
   end
 
   def update(dt)
-    @x += Gosu::offset_x(@angle, 100) * dt
-    @y += Gosu::offset_y(@angle, 100) * dt
+    @x += Gosu::offset_x(@angle, SPEED) * dt
+    @y += Gosu::offset_y(@angle, SPEED) * dt
 
+    # TODO: Collision detection
     if @x > @state.render_controller.window.width or @y > @state.render_controller.window.height or @x < 0 or @y < 0
       destroy!
     end
