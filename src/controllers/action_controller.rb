@@ -1,3 +1,5 @@
+# The ActionController tells everything to update.
+# If something needs to update, it should register here.
 class ActionController
   attr_accessor :window
 

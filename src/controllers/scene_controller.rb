@@ -1,3 +1,6 @@
+# The SceneController knows about everything that is going on
+# in the scene. If anything wants to know what's in the scene,
+# it should ask here
 class SceneController
   attr_accessor :window, :objects
 

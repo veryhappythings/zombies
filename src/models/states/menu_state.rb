@@ -46,11 +46,12 @@ class MenuState
 
   def draw
     y_offset = 50
+
     @menu_items.each_with_index do |item, i|
       @font.draw(item, @font_size*3, (i * @font_size) + y_offset, 0)
     end
 
-    @font.draw('>', @font_size*2, (@current_item * @font_size) + y_offset, 0)
+    @font.draw('>', @font_size*2, (@current_item * @font_size) + y_offset+4, 0)
   end
 
   def update(dt)

@@ -53,8 +53,8 @@ class Player
   def move(dt, direction)
     @x += Gosu::offset_x(@angle, 100*direction) * dt
     @y += Gosu::offset_y(@angle, 100*direction) * dt
-    @x %= 640
-    @y %= 480
+    @x %= @state.window.width
+    @y %= @state.window.height
   end
 
   def shoot
