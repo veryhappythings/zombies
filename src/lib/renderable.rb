@@ -16,9 +16,13 @@ class Renderable
   end
 
   def collides_with?(renderable)
-    @x > renderable.x - renderable.width/2 &&
-      @x < renderable.x + renderable.width/2 &&
-      @y > renderable.y - renderable.height/2 &&
-      @y < renderable.y + renderable.height/2
+    if not renderable.kind_of?(Renderable)
+      false
+    else
+      @x > renderable.x - renderable.width/2 &&
+        @x < renderable.x + renderable.width/2 &&
+        @y > renderable.y - renderable.height/2 &&
+        @y < renderable.y + renderable.height/2
+    end
   end
 end

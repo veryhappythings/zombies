@@ -11,6 +11,8 @@ class PlayingState
 
     @player = Player.new(self)
     @player.warp(200, 200)
+
+    @level = Level.new(self)
   end
 
   def draw

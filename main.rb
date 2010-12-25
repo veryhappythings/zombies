@@ -12,6 +12,7 @@ require 'src/models/states/playing_state'
 require 'src/models/player'
 require 'src/models/zombie'
 require 'src/models/bullet'
+require 'src/models/level'
 
 class GameWindow < Gosu::Window
   include Singleton

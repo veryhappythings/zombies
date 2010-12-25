@@ -4,8 +4,6 @@
 class SceneController
   attr_accessor :window, :objects
 
-  ZOMBIE_COUNT = 2
-
   def initialize(state)
     @objects = []
     @state = state
@@ -29,12 +27,6 @@ class SceneController
   def update(dt)
     @objects.each do |object|
       object.update(dt)
-    end
-
-    # Should this be here?
-    zombies = @objects.select {|o| o.class == Zombie}
-    if zombies.length < ZOMBIE_COUNT
-      Zombie.new(@state, rand*@window.width, rand*@window.height, 0)
     end
   end
 end
