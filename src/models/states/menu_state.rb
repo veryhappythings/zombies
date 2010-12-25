@@ -4,7 +4,7 @@ class MenuState
   def initialize(window)
     @window = window
 
-    @font = Gosu::Font.new(@window, Gosu::default_font_name, 20)
+    @font = Gosu::Font.new(@window, Gosu::default_font_name, 40)
 
     @menu_items = [
       'new game',
