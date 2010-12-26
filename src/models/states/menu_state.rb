@@ -1,8 +1,11 @@
 class MenuState
   attr_accessor :window
+  attr_accessor :custom_message
 
   def initialize(window)
     @window = window
+
+    @custom_message = ''
 
     @font_size = 40
     @font = Gosu::Font.new(@window, Gosu::default_font_name, @font_size)
@@ -45,6 +48,8 @@ class MenuState
   end
 
   def draw
+    @font.draw(@custom_message, 20, 20, 0)
+
     y_offset = 50
 
     @menu_items.each_with_index do |item, i|

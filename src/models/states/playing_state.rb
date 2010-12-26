@@ -16,7 +16,8 @@ class PlayingState
   end
 
   def end_game!
-    @window.new_game!
+    @window.pop_state!
+    @window.current_game_state.custom_message = 'Game over!'
   end
 
   def draw
@@ -36,7 +37,8 @@ class PlayingState
       when Gosu::Button::KbSpace then
         @keyboard_controller.send_event(:kb_space_down)
       when Gosu::Button::KbEscape then
-        GameWindow.instance.enter_state MenuState.new(@window)
+        @window.enter_state MenuState.new(@window)
+        @window.current_game_state.custom_message = 'Game paused!'
     end
   end
 end
