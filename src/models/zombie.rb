@@ -24,7 +24,7 @@ class Zombie < Renderable
   end
 
   def update(dt)
-    player = @state.scene_controller.objects.find {|o| o.class == Player}
+    player = @state.scene_controller.player
     if player
       target_x, target_y = player.x, player.y
       @angle = Gosu::angle(@x, @y, target_x, target_y)

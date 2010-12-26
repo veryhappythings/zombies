@@ -29,4 +29,11 @@ class SceneController
       object.update(dt)
     end
   end
+
+  def zombies
+    @objects.select {|o| o.class == Zombie}
+  end
+  def player
+    @objects.find {|o| o.class == Player}
+  end
 end
