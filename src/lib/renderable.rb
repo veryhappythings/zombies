@@ -9,6 +9,22 @@ class Renderable
     @image.height
   end
 
+  def top
+    @y - height / 2
+  end
+
+  def bottom
+    @y + height / 2
+  end
+
+  def left
+    @x - width / 2
+  end
+
+  def right
+    @x + width / 2
+  end
+
   def draw
   end
 
@@ -19,10 +35,11 @@ class Renderable
     if not renderable.kind_of?(Renderable)
       false
     else
-      @x > renderable.x - renderable.width/2 &&
-        @x < renderable.x + renderable.width/2 &&
-        @y > renderable.y - renderable.height/2 &&
-        @y < renderable.y + renderable.height/2
+      !(bottom < renderable.top ||
+        top > renderable.bottom ||
+        right < renderable.left ||
+        left > renderable.right)
     end
   end
+
 end
