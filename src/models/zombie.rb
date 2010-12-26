@@ -32,7 +32,7 @@ class Zombie < Renderable
     end
 
     if collides_with? player
-      player.destroy!
+      player.damage(100)
     end
   end
 

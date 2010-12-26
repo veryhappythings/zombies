@@ -9,6 +9,7 @@ class Player < Renderable
     @image = Gosu::Image.new(@window, 'media/player.png', false)
     @x = @y = @angle = 0.0
 
+    @health = 100
     @score = 0
 
     @state.keyboard_controller.register(self)
@@ -21,6 +22,12 @@ class Player < Renderable
 
   def draw
     @image.draw_rot(@x, @y, 1, @angle)
+  end
+
+  def update(dt)
+    if @health <= 0
+      destroy!
+    end
   end
 
   def handle_event(event)
@@ -78,5 +85,9 @@ class Player < Renderable
 
   def destroy!
     @state.end_game! @score
+  end
+
+  def damage(value)
+    @health -= value
   end
 end
