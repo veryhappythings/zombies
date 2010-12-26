@@ -30,6 +30,10 @@ class Zombie < Renderable
       @angle = Gosu::angle(@x, @y, target_x, target_y)
       move(dt)
     end
+
+    if collides_with? player
+      player.destroy!
+    end
   end
 
   def destroy!

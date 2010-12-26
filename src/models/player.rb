@@ -69,4 +69,8 @@ class Player < Renderable
   def shoot
     bullet = Bullet.new(@state, @x, @y, @angle)
   end
+
+  def destroy!
+    @state.end_game!
+  end
 end

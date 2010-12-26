@@ -10,9 +10,13 @@ class PlayingState
     @scene_controller = SceneController.new(self)
 
     @player = Player.new(self)
-    @player.warp(200, 200)
+    @player.warp(400, 300)
 
     @level = Level.new(self)
+  end
+
+  def end_game!
+    @window.new_game!
   end
 
   def draw
