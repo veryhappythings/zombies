@@ -1,11 +1,15 @@
 class Player < Renderable
   SPEED = 100
 
+  attr_reader :score
+
   def initialize(state)
     @state = state
     @window = state.window
     @image = Gosu::Image.new(@window, 'media/player.png', false)
     @x = @y = @angle = 0.0
+
+    @score = 0
 
     @state.keyboard_controller.register(self)
     @state.scene_controller.register(self)
@@ -31,6 +35,8 @@ class Player < Renderable
       move_backwards(event.options[:dt])
     when :kb_space_down then
       shoot
+    when :game_killed_zombie then
+      @score += 1
     end
   end
 
@@ -67,10 +73,10 @@ class Player < Renderable
   end
 
   def shoot
-    bullet = Bullet.new(@state, @x, @y, @angle)
+    bullet = Bullet.new(@state, @x, @y, @angle, self)
   end
 
   def destroy!
-    @state.end_game!
+    @state.end_game! @score
   end
 end

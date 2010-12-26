@@ -13,11 +13,12 @@ class PlayingState
     @player.warp(400, 300)
 
     @level = Level.new(self)
+
   end
 
-  def end_game!
+  def end_game!(score)
     @window.pop_state!
-    @window.current_game_state.custom_message = 'Game over!'
+    @window.current_game_state.custom_message = "Game over! Score: #{score}"
   end
 
   def draw

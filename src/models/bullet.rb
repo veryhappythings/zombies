@@ -1,10 +1,11 @@
 class Bullet < Renderable
   SPEED = 200
 
-  def initialize(state, x, y, angle)
+  def initialize(state, x, y, angle, origin)
     @state = state
     @image = Gosu::Image.new(@state.window, 'media/bullet.png', false)
     @angle = angle
+    @origin = origin
     @x = x
     @y = y
 
@@ -27,6 +28,7 @@ class Bullet < Renderable
     @state.scene_controller.objects.each do |object|
       if collides_with? object
         if object.class == Zombie
+          @origin.handle_event Event.new(:game_killed_zombie)
           object.destroy!
           destroy!
         end

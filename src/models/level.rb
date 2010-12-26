@@ -1,14 +1,19 @@
 class Level
-  ZOMBIE_COUNT = 2
-
+  SPAWN_TIME = 3
   def initialize(state)
     @state = state
     @window = @state.window
 
     @state.scene_controller.register(self)
+
+    @font = Gosu::Font.new(@window, Gosu::default_font_name, 20)
+
+    @zombie_count = 2
+    @time_passed = 0
   end
 
   def draw
+    @font.draw(@state.scene_controller.player.score, 1, 1, 0)
   end
 
   def spawn_zombie!
@@ -43,8 +48,15 @@ class Level
   end
 
   def update(dt)
+    @time_passed += dt
+
+    if @time_passed > SPAWN_TIME
+      @time_passed = 0
+      @zombie_count += 1
+    end
+
     zombies = @state.scene_controller.zombies
-    if zombies.length < ZOMBIE_COUNT
+    if zombies.length < @zombie_count
       spawn_zombie!
     end
   end
