@@ -23,25 +23,25 @@ class KeyboardController
   end
 
   def update(dt)
-    if @window.button_down? Gosu::Button::KbLeft then
+    if @window.button_down? Gosu::Button::KbLeft or @window.button_down? Gosu::Button::KbA then
       event = Event.new(:kb_left_down, :dt => dt)
       @listeners.each do |l|
         l.handle_event(event)
       end
     end
-    if @window.button_down? Gosu::Button::KbRight then
+    if @window.button_down? Gosu::Button::KbRight or @window.button_down? Gosu::Button::KbD then
       event = Event.new(:kb_right_down, :dt => dt)
       @listeners.each do |l|
         l.handle_event(event)
       end
     end
-    if @window.button_down? Gosu::Button::KbUp then
+    if @window.button_down? Gosu::Button::KbUp or @window.button_down? Gosu::Button::KbW then
       event = Event.new(:kb_up_down, :dt => dt)
       @listeners.each do |l|
         l.handle_event(event)
       end
     end
-    if @window.button_down? Gosu::Button::KbDown then
+    if @window.button_down? Gosu::Button::KbDown or @window.button_down? Gosu::Button::KbS then
       event = Event.new(:kb_down_down, :dt => dt)
       @listeners.each do |l|
         l.handle_event(event)
