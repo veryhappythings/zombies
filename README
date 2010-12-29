@@ -1,3 +1,10 @@
 This is me learning to write games. I've chosen to use Ruby because I know it well enough to avoid wasting time on the language, but eventually I'd like to learn about games in C++ too.
 
 I'd love any pointers anyone can give me on game design or ruby best practices.
+
+gem install gosu
+ruby main.rb
+
+Move the mouse to target, left click to shoot, wasd or arrow keys move your little man.
+
+The zombies have a bit of a massive hit box - sorry about that.
