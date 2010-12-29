@@ -25,6 +25,7 @@ class Player < Renderable
   end
 
   def update(dt)
+    @angle = Gosu::angle(@x, @y, @state.window.mouse_x, @state.window.mouse_y)
     if @health <= 0
       destroy!
     end
@@ -33,9 +34,9 @@ class Player < Renderable
   def handle_event(event)
     case event.name
     when :kb_left_down then
-      turn_left(event.options[:dt])
+      move_left(event.options[:dt])
     when :kb_right_down then
-      turn_right(event.options[:dt])
+      move_right(event.options[:dt])
     when :kb_up_down then
       move_forwards(event.options[:dt])
     when :kb_down_down then
@@ -58,15 +59,34 @@ class Player < Renderable
   end
 
   def move_forwards(dt)
-    move(dt, 1)
+    move(dt, :up)
   end
   def move_backwards(dt)
-    move(dt, -1)
+    move(dt, :down)
+  end
+  def move_left(dt)
+    move(dt, :left)
+  end
+  def move_right(dt)
+    move(dt, :right)
   end
   def move(dt, direction)
     # TODO: Move wall collision calculations into physics model
-    x_movement = Gosu::offset_x(@angle, SPEED*direction) * dt
-    y_movement = Gosu::offset_y(@angle, SPEED*direction) * dt
+    case direction
+    when :left
+      x_movement = -SPEED * dt
+      y_movement = 0
+    when :right
+      x_movement = SPEED * dt
+      y_movement = 0
+    when :up
+      x_movement = 0
+      y_movement = -SPEED * dt
+    when :down
+      x_movement = 0
+      y_movement = SPEED * dt
+    end
+
 
     if x_movement > 0 and @x < @state.window.width - width/2
       @x += x_movement
