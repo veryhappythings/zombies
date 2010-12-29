@@ -9,11 +9,12 @@ class PlayingState
     @keyboard_controller = KeyboardController.new(self)
     @scene_controller = SceneController.new(self)
 
+    @target = Gosu::Image.new(@window, 'media/target.png', false)
+
     @player = Player.new(self)
     @player.warp(400, 300)
 
     @level = Level.new(self)
-
   end
 
   def end_game!(score)
@@ -23,6 +24,7 @@ class PlayingState
 
   def draw
     @scene_controller.draw
+    @target.draw(@window.mouse_x, @window.mouse_y, 0)
   end
 
   def update(dt)
@@ -40,6 +42,8 @@ class PlayingState
       when Gosu::Button::KbEscape then
         @window.enter_state MenuState.new(@window)
         @window.current_game_state.custom_message = 'Game paused!'
+      when Gosu::Button::MsLeft then
+        @keyboard_controller.send_event(:mouse_left_down)
     end
   end
 end

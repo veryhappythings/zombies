@@ -42,6 +42,8 @@ class Player < Renderable
       move_backwards(event.options[:dt])
     when :kb_space_down then
       shoot
+    when :mouse_left_down then
+      shoot
     when :game_killed_zombie then
       @score += 1
     end
@@ -80,7 +82,8 @@ class Player < Renderable
   end
 
   def shoot
-    bullet = Bullet.new(@state, @x, @y, @angle, self)
+    angle = Gosu::angle(@x, @y, @state.window.mouse_x, @state.window.mouse_y)
+    bullet = Bullet.new(@state, @x, @y, angle, self)
   end
 
   def destroy!
