@@ -29,6 +29,10 @@ class MenuState
 
   def select_item(item)
     @current_item = @menu_items.index item
+    if @current_item == nil
+      raise Exception.new, "Could not find item #{item}"
+    end
+    @current_item
   end
 
   def execute_action(action)
