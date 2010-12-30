@@ -13,9 +13,7 @@ Given /^that I have a menu up$/ do
 end
 
 Given /^I have selected "([^"]*)"$/ do |item|
-  while @window.current_game_state.selected_item != item
-    @window.current_game_state.button_down(Gosu::Button::KbUp)
-  end
+  @window.current_game_state.select_item item
 end
 
 When /^I press return$/ do
@@ -24,5 +22,9 @@ end
 
 Then /^the game should start$/ do
   @window.current_game_state.class.should == PlayingState
+end
+
+Then /^the window should close$/ do
+  # I don't currently have a way to find out if the window closed or not.
 end
 

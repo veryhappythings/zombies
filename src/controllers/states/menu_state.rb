@@ -27,6 +27,10 @@ class MenuState
     @menu_items[@current_item]
   end
 
+  def select_item(item)
+    @current_item = @menu_items.index item
+  end
+
   def execute_action(action)
     case action
     when 'resume'
