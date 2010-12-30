@@ -2,6 +2,8 @@ class MenuState
   attr_accessor :window
   attr_accessor :custom_message
 
+  attr_reader :menu_items, :current_item
+
   def initialize(window)
     @window = window
 
@@ -19,6 +21,10 @@ class MenuState
     if window.current_game_state.class == PlayingState
       @menu_items.insert(0, 'resume')
     end
+  end
+
+  def selected_item
+    @menu_items[@current_item]
   end
 
   def execute_action(action)
@@ -43,7 +49,7 @@ class MenuState
         @current_item += 1
       end
     when Gosu::Button::KbReturn then
-      execute_action(@menu_items[@current_item])
+      execute_action(selected_item)
     end
   end
 
