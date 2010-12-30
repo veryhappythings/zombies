@@ -2,13 +2,14 @@ require 'rspec/expectations'
 require 'src/zombies'
 
 Before do
-  @window = GameWindow.instance
+  @window = GameWindow.new
 end
 
 After do
 end
 
 Given /^that I have a menu up$/ do
+  @window = GameWindow.new
 end
 
 Given /^I have selected "([^"]*)"$/ do |item|

@@ -30,11 +30,11 @@ class MenuState
   def execute_action(action)
     case action
     when 'resume'
-      GameWindow.instance.pop_state!
+      @window.pop_state!
     when 'new game'
-      GameWindow.instance.new_game!
+      @window.new_game!
     when 'quit'
-      GameWindow.instance.close
+      @window.close
     end
   end
 

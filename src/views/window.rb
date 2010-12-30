@@ -1,6 +1,4 @@
 class GameWindow < Gosu::Window
-  include Singleton
-
   def initialize
     super(800, 600, false)
     self.caption = "Zombies etc"
