@@ -9,13 +9,6 @@ After do
 end
 
 # Givens
-Given /^that I have a menu up$/ do
-  @window = GameWindow.new
-end
-
-Given /^I have selected "([^"]*)"$/ do |item|
-  @window.current_game_state.select_item item
-end
 
 Given /^that I am playing a game$/ do
   @window.new_game!
