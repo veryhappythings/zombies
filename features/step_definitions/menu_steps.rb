@@ -1,3 +1,6 @@
+require 'rspec/expectations'
+require 'src/zombies'
+
 Given /^that I have a menu up$/ do
   @window = GameWindow.new
 end

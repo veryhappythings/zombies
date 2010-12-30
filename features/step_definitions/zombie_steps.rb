@@ -14,10 +14,6 @@ Given /^that I am playing a game$/ do
   @window.new_game!
 end
 
-Given /^I have brought up the menu$/ do
-  @window.button_down(Gosu::Button::KbEscape)
-end
-
 # Whens
 When /^I press return$/ do
     @window.current_game_state.button_down(Gosu::Button::KbReturn)
