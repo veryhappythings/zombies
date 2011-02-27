@@ -16,7 +16,7 @@ class Level
     @font.draw(@state.scene_controller.player.score, 1, 1, 0)
   end
 
-  def spawn_zombie!
+  def spawn_zombie
     x = rand * @window.width
     y = rand * @window.height
 
@@ -57,7 +57,7 @@ class Level
 
     zombies = @state.scene_controller.zombies
     if zombies.length < @zombie_count
-      spawn_zombie!
+      spawn_zombie
     end
   end
 end
