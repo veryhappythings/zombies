@@ -87,15 +87,15 @@ class Player < Renderable
       y_movement = SPEED * dt
     end
 
-    if x_movement > 0 and @x + width/2 < @state.window.width
+    if x_movement > 0 and right < @state.window.width
       @x += x_movement
-    elsif x_movement < 0 and @x - width/2 > 0
+    elsif x_movement < 0 and left > 0
       @x += x_movement
     end
 
-    if y_movement > 0 and @y + height/2 < @state.window.height
+    if y_movement > 0 and bottom < @state.window.height
       @y += y_movement
-    elsif y_movement < 0 and @y - height/2 > 0
+    elsif y_movement < 0 and top > 0
       @y += y_movement
     end
   end
