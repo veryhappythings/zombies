@@ -1,4 +1,4 @@
-class PlayingState
+class PlayingState < State
   attr_reader :window
   attr_reader :keyboard_controller
   attr_reader :scene_controller
@@ -36,6 +36,7 @@ class PlayingState
   end
 
   def button_down(id)
+    @keyboard_controller.button_down(id)
     case id
       when Gosu::Button::KbSpace then
         @keyboard_controller.send_event(:kb_space_down)
@@ -45,5 +46,9 @@ class PlayingState
       when Gosu::Button::MsLeft then
         @keyboard_controller.send_event(:mouse_left_down)
     end
+  end
+
+  def button_up(id)
+    @keyboard_controller.button_up(id)
   end
 end

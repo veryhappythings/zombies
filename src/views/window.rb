@@ -43,6 +43,10 @@ class GameWindow < Gosu::Window
     current_game_state.button_down(id)
   end
 
+  def button_up(id)
+    current_game_state.button_up(id)
+  end
+
   def update
     dt = (Gosu::milliseconds - @current_time) / 1000.0
     @current_time = Gosu::milliseconds

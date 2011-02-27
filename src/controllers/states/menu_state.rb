@@ -1,4 +1,4 @@
-class MenuState
+class MenuState < State
   attr_accessor :window
   attr_accessor :custom_message
 
@@ -71,8 +71,5 @@ class MenuState
     end
 
     @font.draw('>', @font_size*2, (@current_item * @font_size) + y_offset+4, 0)
-  end
-
-  def update(dt)
   end
 end

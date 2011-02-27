@@ -15,8 +15,20 @@ Given /^that I am playing a game$/ do
 end
 
 # Whens
-When /^I press return$/ do
-    @window.current_game_state.button_down(Gosu::Button::KbReturn)
+When /^I press "([^"]*)"$/ do |key_name|
+    key = case key_name
+          when 'Return' then
+            Gosu::Button::KbReturn
+          when 'W' then
+            Gosu::Button::KbW
+          when 'A' then
+            Gosu::Button::KbA
+          when 'S' then
+            Gosu::Button::KbS
+          when 'D' then
+            Gosu::Button::KbD
+          end
+    @window.button_down(key)
 end
 
 # Thens
@@ -26,5 +38,10 @@ end
 
 Then /^I should be playing the game$/ do
   @window.current_game_state.class.should == PlayingState
+end
+
+Then /^my character should move up the screen$/ do
+  @window.update
+  @window.current_game_state.scene_controller.player.y.should < 300
 end
 
