@@ -36,4 +36,9 @@ class SceneController
   def player
     @objects.find {|o| o.class == Player}
   end
+
+  def nearby(object)
+    # Stub method - one day, this will only give a relevant list of objects
+    @objects.reject{|o| o == object }
+  end
 end

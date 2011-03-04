@@ -10,6 +10,16 @@ class Level
 
     @zombie_count = 2
     @time_passed = 0
+
+    # In lieu of a map
+    # left
+    InvisibleWall.new(@state, -1, -1, 0, @window.height)
+    # top
+    InvisibleWall.new(@state, -1, -1, @window.width, 0)
+    # right
+    InvisibleWall.new(@state, @window.width, -1, @window.width+1, @window.height)
+    # bottom
+    InvisibleWall.new(@state, 0, @window.height, @window.width, @window.height+1)
   end
 
   def draw

@@ -87,16 +87,14 @@ class Player < Renderable
       y_movement = SPEED * dt
     end
 
-    if x_movement > 0 and right < @state.window.width
-      @x += x_movement
-    elsif x_movement < 0 and left > 0
-      @x += x_movement
-    end
-
-    if y_movement > 0 and bottom < @state.window.height
-      @y += y_movement
-    elsif y_movement < 0 and top > 0
-      @y += y_movement
+    @x += x_movement
+    @y += y_movement
+    @state.scene_controller.nearby(self).each do |object|
+      if collides_with? object
+        @x -= x_movement
+        @y -= y_movement
+        break
+      end
     end
   end
 

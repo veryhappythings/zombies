@@ -17,5 +17,6 @@ require "#{dir}/models/player"
 require "#{dir}/models/zombie"
 require "#{dir}/models/bullet"
 require "#{dir}/models/level"
+require "#{dir}/models/invisible_wall"
 
 require "#{dir}/views/window"
