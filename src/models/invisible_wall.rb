@@ -10,6 +10,9 @@ class InvisibleWall < Renderable
     @state.scene_controller.register(self)
   end
 
+  def draw(camera)
+  end
+
   def width
     @width
   end

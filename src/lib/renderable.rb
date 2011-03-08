@@ -25,7 +25,10 @@ class Renderable
     @x + width / 2
   end
 
-  def draw
+  def draw(camera)
+    draw_x = @x - camera.x + @window.width / 2
+    draw_y = @y - camera.y + @window.height / 2
+    @image.draw_rot(draw_x, draw_y, 1, @angle)
   end
 
   def update(dt)

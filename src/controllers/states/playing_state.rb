@@ -3,6 +3,8 @@ class PlayingState < State
   attr_reader :keyboard_controller
   attr_reader :scene_controller
 
+  attr_accessor :camera
+
   def initialize(window)
     @window = window
 
@@ -15,6 +17,8 @@ class PlayingState < State
     @player.warp(400, 300)
 
     @level = Level.new(self)
+
+    @camera = Point.new(0, 0)
   end
 
   def end_game!(score)
@@ -23,7 +27,7 @@ class PlayingState < State
   end
 
   def draw
-    @scene_controller.draw
+    @scene_controller.draw(@camera)
     @target.draw(@window.mouse_x, @window.mouse_y, 0)
   end
 
@@ -33,6 +37,9 @@ class PlayingState < State
 
     # Actions
     @scene_controller.update(dt)
+
+    @camera.x = @player.x
+    @camera.y = @player.y
   end
 
   def button_down(id)

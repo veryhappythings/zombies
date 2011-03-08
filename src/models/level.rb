@@ -22,7 +22,7 @@ class Level
     InvisibleWall.new(@state, 0, @window.height, @window.width, @window.height+1)
   end
 
-  def draw
+  def draw(camera)
     @font.draw(@state.scene_controller.player.score, 1, 1, 0)
   end
 

@@ -14,10 +14,6 @@ class Zombie < Renderable
     @x, @y = x, y
   end
 
-  def draw
-    @image.draw_rot(@x, @y, 1, @angle)
-  end
-
   def move(dt)
     @x += Gosu::offset_x(@angle, SPEED) * dt
     @y += Gosu::offset_y(@angle, SPEED) * dt

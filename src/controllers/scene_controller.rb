@@ -18,9 +18,9 @@ class SceneController
     @objects.delete object
   end
 
-  def draw
+  def draw(camera)
     @objects.each do |object|
-      object.draw
+      object.draw(camera)
     end
   end
 

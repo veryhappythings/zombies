@@ -20,11 +20,8 @@ class Player < Renderable
     @x, @y = x, y
   end
 
-  def draw
-    @image.draw_rot(@x, @y, 1, @angle)
-  end
-
   def update(dt)
+    # Account for camera pos
     @angle = Gosu::angle(@x, @y, @state.window.mouse_x, @state.window.mouse_y)
     if @health <= 0
       destroy!

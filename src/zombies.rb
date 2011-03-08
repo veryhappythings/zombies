@@ -7,6 +7,7 @@ dir = File.dirname(__FILE__)
 require "#{dir}/lib/event"
 require "#{dir}/lib/renderable"
 require "#{dir}/lib/state"
+require "#{dir}/lib/point"
 
 require "#{dir}/controllers/keyboard_controller"
 require "#{dir}/controllers/scene_controller"
