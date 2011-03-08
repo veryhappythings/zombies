@@ -31,6 +31,20 @@ class PlayingState < State
     @target.draw(@window.mouse_x, @window.mouse_y, 0)
   end
 
+  def relative_to_absolute(x, y)
+    # from map to window
+    abs_x = x + (@camera.x - @window.width / 2)
+    abs_y = y + (@camera.y - @window.height / 2)
+    return abs_x, abs_y
+  end
+
+  def absolute_to_relative(x, y)
+    # from window to map
+    rel_x = x - @camera.x + @window.width / 2
+    rel_y = y - @camera.y + @window.height / 2
+    return rel_x, rel_y
+  end
+
   def update(dt)
     # Controls
     @keyboard_controller.update(dt)
