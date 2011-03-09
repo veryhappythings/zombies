@@ -7,6 +7,7 @@ class Level
     @state.scene_controller.register(self)
 
     @font = Gosu::Font.new(@window, Gosu::default_font_name, 20)
+    @background = Gosu::Image.new(@window, 'media/background.png', false)
 
     @zombie_count = 2
     @time_passed = 0
@@ -24,6 +25,9 @@ class Level
 
   def draw(camera)
     @font.draw(@state.scene_controller.player.score, 1, 1, 0)
+
+    bg_x, bg_y = @state.absolute_to_relative(400, 300)
+    @background.draw_rot(bg_x, bg_y, 0, 0)
   end
 
   def spawn_zombie

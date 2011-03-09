@@ -97,7 +97,8 @@ class Player < Renderable
   end
 
   def shoot
-    angle = Gosu::angle(@x, @y, @state.window.mouse_x, @state.window.mouse_y)
+    look_x, look_y = @state.relative_to_absolute(@state.window.mouse_x, @state.window.mouse_y)
+    angle = Gosu::angle(@x, @y, look_x, look_y)
     bullet = Bullet.new(@state, @x, @y, angle, self)
   end
 
