@@ -26,7 +26,7 @@ class Level
   def draw(camera)
     @font.draw(@state.scene_controller.player.score, 1, 1, 0)
 
-    bg_x, bg_y = @state.absolute_to_relative(400, 300)
+    bg_x, bg_y = @state.absolute_to_relative(@window.width/2, @window.height/2)
     @background.draw_rot(bg_x, bg_y, 0, 0)
   end
 
